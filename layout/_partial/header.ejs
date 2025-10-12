@@ -3,7 +3,7 @@
     <a href="<%- url_for() %>" class="logo"><%= config.title %></a>
     <div class="subtitle"><%= config.subtitle || '' %></div>
   </div>
-  <nav class="navbar">
+  <nav class="navbar" aria-label="主导航">
     <ul class="menu">
       <% for (name in theme.menu) { %>
         <li class="menu-item">

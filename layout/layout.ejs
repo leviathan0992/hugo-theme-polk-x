@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="<%= config.language || 'en' %>">
   <%- partial('_partial/head') %>
-  <body>
+  <body id="top">
     <div class="container">
       <%- body %>
     </div>
+    <script src="/js/main.js" defer></script>
   </body>
 </html>

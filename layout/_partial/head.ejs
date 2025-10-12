@@ -1,8 +1,6 @@
-<!DOCTYPE html>
-<html lang="<%= config.language || 'en' %>">
 <head>
 
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
   <%
     var title = config.title;
@@ -24,8 +22,7 @@
     }
   %>
   <title><%= title %></title>
-  <link rel="icon" href="https://raw.githubusercontent.com/Leviathan1995/hexo-theme-polk-x/master/google.png" type="image/x-icon">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <%
     let keywords = theme.keywords, tmp = [];
 
@@ -37,7 +34,7 @@
       keywords = tmp.join(',');
     }
   %>
-  <meta name="keywords" content=<%= keywords %>>
+  <meta name="keywords" content="<%= keywords %>">
   <% if (config.description){ %>
     <meta name="description" content="<%= config.description %>">
   <% } %>
