@@ -1,0 +1,15 @@
+{{/* Fallback single template for non-post content (e.g. standalone pages) */}}
+{{ define "main" }}
+  {{ partial "header.html" . }}
+
+  <div class="page">
+    <div class="page-title">
+      <h1 class="article-title">{{ .Title }}</h1>
+    </div>
+    <div class="page-content">
+      {{ .Content }}
+    </div>
+  </div>
+
+  {{ partial "footer.html" . }}
+{{ end }}

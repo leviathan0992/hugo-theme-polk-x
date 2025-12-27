@@ -1,0 +1,15 @@
+<header class="header">
+  <div class="blog-title">
+    <a href="{{ "/" | relLangURL }}" class="logo">{{ .Site.Title }}</a>
+    <div class="subtitle">{{ .Site.Params.subtitle | default "" }}</div>
+  </div>
+  <nav class="navbar" aria-label="主导航">
+    <ul class="menu">
+      {{- range .Site.Menus.main -}}
+        <li class="menu-item">
+          <a href="{{ .URL }}" class="menu-item-link">{{ .Name }}</a>
+        </li>
+      {{- end -}}
+    </ul>
+  </nav>
+</header>

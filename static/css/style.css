@@ -1,0 +1,479 @@
+body {
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body,
+.container {
+  height: 100%;
+  max-height: 100%;
+  font-family: "Lato", "PingFang SC", "Microsoft YaHei", sans-serif;
+  letter-spacing: 0.01rem;
+  line-height: 1.85rem;
+  color: #333333;
+  background: #fafafa;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+a {
+  color: #000;
+  text-decoration: none;
+}
+
+.page {
+  margin: 0 20px;
+  margin-bottom: 2em;
+}
+
+.page p {
+  line-height: 1.5em;
+}
+
+/* header */
+.header {
+  margin-bottom: -0.5em;
+  padding: 0 20px;
+}
+
+.header .blog-title {
+  font-size: 2.5em;
+  text-align: center;
+  padding-top: 0.5em;
+}
+
+.header .subtitle {
+  font-size: 14px;
+  color: gray;
+}
+
+.header .menu {
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid #ccc;
+  margin-top: 20px;
+}
+
+.header .menu .menu-item {
+  margin: 0 26px 0 0;
+  padding: 6px 0 6px 0;
+  float: inherit;
+  display: inline-block;
+}
+
+.header .menu .menu-item-link {
+  color: #999;
+}
+
+.header .menu .menu-item-link:hover {
+  color: #000;
+}
+
+/* post */
+.post {
+  padding: 0 20px;
+  margin-bottom: 1.5em;
+}
+
+.post img {
+  max-width: 100%;
+}
+
+.post table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.post table td,
+.post table th {
+  padding: 6px 13px;
+  border: 1px solid #dfe2e5;
+}
+
+.post hr {
+  margin: 1.5em 0;
+}
+
+.post .post-content {
+  text-align: justify;
+}
+
+.post .post-content a {
+  border-bottom: 1px solid;
+}
+
+.post .post-content a:hover {
+  border-bottom: 1px solid;
+}
+
+.post .post-content ul,
+.post .post-content ol {
+  text-align: left;
+}
+
+.post .post-content ul li,
+.post .post-content ol li {
+  padding: 0px;
+  line-height: 1.85em;
+}
+
+.post figure {
+  margin: 0;
+}
+
+.post figure table {
+  width: 100%;
+}
+
+.post figure table .code {
+  border: 0;
+  padding: 0;
+}
+
+.post figure .gutter {
+  display: none;
+}
+
+.post blockquote {
+  margin: 0;
+  padding: 0 15px;
+  color: #777;
+  border-left: 4px solid #ddd;
+}
+
+.post pre {
+  margin: 0;
+  padding: 0.5em 1.5em;
+  overflow: auto;
+  font-size: 110%;
+  line-height: 1.5;
+  background-color: #f7f7f7;
+}
+
+/* Fenced code blocks (Hexo/Hugo highlight wrapper): keep closer to original Hexo visual size.
+   Hugo's highlight DOM can make the 110% feel too large; constrain blocks only. */
+.post figure.highlight pre,
+.post figure.highlight code {
+  font-size: 100%;
+}
+
+/* If any inner .highlight wrapper remains, neutralize it inside code blocks */
+.post figure.highlight .highlight {
+  background: transparent;
+  padding: 0;
+}
+
+/* Code block readability tweaks (subtle, keep original look) */
+.post figure.highlight pre.chroma {
+  padding: 0.7em 1.5em; /* keep original horizontal padding, slightly more vertical */
+  line-height: 1.55;
+  overflow-x: auto;
+  border: 0;
+  box-shadow: inset 0 0 0 1px rgba(27, 31, 36, 0.025);
+}
+
+.post figure.highlight pre.chroma code {
+  font-variant-ligatures: none;
+  font-feature-settings: "liga" 0, "calt" 0;
+  -moz-tab-size: 4;
+  tab-size: 4;
+}
+
+/* Subtle line hover to aid scanning large blocks */
+.post figure.highlight .chroma .line {
+  display: block;
+}
+
+.post figure.highlight .chroma .line:hover {
+  background: rgba(175, 184, 193, 0.22);
+}
+
+.post code {
+  font-family: "lucida grande", "lucida sans unicode", lucida, helvetica,
+    "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif !important;
+  font-size: 1.02em;
+  background: #eee;
+  margin: 5px;
+  padding: 0 5px;
+}
+
+/* Code blocks (Hugo/Goldmark renders fenced blocks as <pre><code>...).
+   Prevent inline-code styling from breaking block layout. */
+.post pre code {
+  /* Hexo highlight blocks didn't use <code>, so inline-code styles should NOT apply here. */
+  font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
+  background: transparent;
+  margin: 0;
+  padding: 0;
+  font-size: inherit;
+}
+
+/* GitHub VS Code Theme (GitHub Light Default) inspired syntax highlighting.
+   Reference: https://github.com/primer/github-vscode-theme
+   Scoped to code blocks only. */
+.post figure.highlight {
+  background: transparent;
+  border-radius: 0;
+}
+
+.post figure.highlight pre {
+  background: #f7f7f7;
+}
+
+.post figure.highlight .chroma {
+  /* Make base code darker to increase contrast against comments on light-gray background */
+  color: #0b0f14;
+}
+
+/* comments */
+.post figure.highlight .chroma .c,
+.post figure.highlight .chroma .ch,
+.post figure.highlight .chroma .cm,
+.post figure.highlight .chroma .cp,
+.post figure.highlight .chroma .cpf,
+.post figure.highlight .chroma .c1,
+.post figure.highlight .chroma .cs {
+  /* More muted than code, but still readable on #f7f7f7 */
+  color: #2f6f8f;
+  font-style: normal;
+}
+
+/* keywords */
+.post figure.highlight .chroma .k,
+.post figure.highlight .chroma .kc,
+.post figure.highlight .chroma .kd,
+.post figure.highlight .chroma .kn,
+.post figure.highlight .chroma .kp,
+.post figure.highlight .chroma .kr,
+.post figure.highlight .chroma .kt {
+  color: #cf222e;
+}
+
+/* strings */
+.post figure.highlight .chroma .s,
+.post figure.highlight .chroma .sa,
+.post figure.highlight .chroma .sb,
+.post figure.highlight .chroma .sc,
+.post figure.highlight .chroma .dl,
+.post figure.highlight .chroma .sd,
+.post figure.highlight .chroma .s2,
+.post figure.highlight .chroma .se,
+.post figure.highlight .chroma .sh,
+.post figure.highlight .chroma .si,
+.post figure.highlight .chroma .sx,
+.post figure.highlight .chroma .sr,
+.post figure.highlight .chroma .s1,
+.post figure.highlight .chroma .ss {
+  color: #0a3069;
+}
+
+/* numbers */
+.post figure.highlight .chroma .m,
+.post figure.highlight .chroma .mb,
+.post figure.highlight .chroma .mf,
+.post figure.highlight .chroma .mh,
+.post figure.highlight .chroma .mi,
+.post figure.highlight .chroma .il,
+.post figure.highlight .chroma .mo {
+  color: #0550ae;
+}
+
+/* function / method names (C++/Python/Go), SQL functions, shell builtins */
+.post figure.highlight .chroma .nf,
+.post figure.highlight .chroma .fm {
+  color: #8250df;
+}
+
+/* types / classes / namespaces */
+.post figure.highlight .chroma .nc,
+.post figure.highlight .chroma .nn {
+  color: #953800;
+}
+
+/* variables/identifiers */
+.post figure.highlight .chroma .n,
+.post figure.highlight .chroma .nx,
+.post figure.highlight .chroma .py,
+.post figure.highlight .chroma .nb,
+.post figure.highlight .chroma .bp,
+.post figure.highlight .chroma .vc,
+.post figure.highlight .chroma .vg,
+.post figure.highlight .chroma .vi,
+.post figure.highlight .chroma .no,
+.post figure.highlight .chroma .na,
+.post figure.highlight .chroma .nl {
+  color: #24292f;
+}
+
+/* variables (make slightly more distinct, closer to editor feel) */
+.post figure.highlight .chroma .nv,
+.post figure.highlight .chroma .vc,
+.post figure.highlight .chroma .vg,
+.post figure.highlight .chroma .vi {
+  color: #0550ae;
+}
+
+/* tags / attributes */
+.post figure.highlight .chroma .nt {
+  color: #116329;
+}
+
+/* operators / punctuation */
+.post figure.highlight .chroma .o,
+.post figure.highlight .chroma .ow,
+.post figure.highlight .chroma .p {
+  color: #24292f;
+}
+
+/* errors + diff-like tokens */
+.post figure.highlight .chroma .err {
+  color: #a40e26;
+  background: transparent;
+}
+
+.post figure.highlight .chroma .gd {
+  color: #a40e26;
+  background: #ffebe9;
+}
+
+.post figure.highlight .chroma .gi {
+  color: #116329;
+  background: #dafbe1;
+}
+
+.post p {
+  line-height: 1.5em;
+}
+
+.post .toc {
+  padding: 1em;
+  list-style-type: square;
+}
+
+.post .toc-child {
+  list-style: square;
+}
+
+/* TOC: keep original Hexo style, just a tiny readability touch */
+.post .toc li,
+.post .toc-child li {
+  line-height: 1.85em;
+}
+
+.post .post-footer {
+  line-height: 1;
+  min-height: 1em;
+}
+
+.post .post-footer .top {
+  float: right;
+  color: #666;
+}
+
+.post .post-footer .top:hover {
+  color: #000;
+}
+
+.post .post-footer .post-tag-list {
+  display: inline-block;
+  padding: 0;
+  margin: 0 0 0.5em 0;
+  color: #999;
+}
+
+.post .post-footer .post-tag-list .post-tag-list-item {
+  display: inline-block;
+  margin: 0 1em 0 0;
+}
+
+.post .post-footer .post-tag-list .post-tag-list-item a {
+  font-size: 85%;
+}
+
+.post .post-footer .post-tag-list .post-tag-list-item:before {
+  content: "#";
+}
+
+/* archive */
+.archive {
+  padding: 0 20px;
+  margin-bottom: 1em;
+}
+
+.archive .post-archive {
+  list-style: none;
+  padding: 0;
+}
+
+.archive .post-archive .post-item {
+  margin: 10px 0;
+  line-height: 1.5;
+}
+
+.archive .post-archive .post-item .post-date {
+  font-size: 80%;
+  color: #aaa;
+  font-family: Hiragino Sans GB, Microsoft YaHei, WenQuanYi, Airal, sans-serif;
+}
+
+@media screen and (max-width: 425px) {
+  .archive .post-archive .post-item .post-date {
+    float: none;
+    margin-left: 0.5em;
+    font-size: 90%;
+    color: #999;
+  }
+}
+
+.archive .post-archive .post-item .post-title {
+  /* border-bottom: 1px dotted; */
+  text-decoration: none;
+}
+
+.archive .post-archive .post-item .post-title:hover {
+  border-bottom: 1px solid;
+}
+
+/* paginator */
+.page-nav {
+  padding: 0 20px;
+}
+
+.page-nav .prev,
+.page-nav .page-number {
+  padding: 10px 20px 10px 0;
+}
+
+.page-nav .next {
+  float: right;
+}
+
+.page-nav a {
+  color: #777;
+}
+
+.page-nav a:hover {
+  color: #000;
+}
+
+/* footer */
+footer {
+  margin: 0.5em 20px 0 20px;
+  border-top: 3px double #ccc;
+  padding: 1em 0 1em 0;
+  font-size: 80%;
+  color: #888;
+}
+
+footer .author {
+  color: #000;
+}
+
+

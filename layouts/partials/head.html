@@ -1,0 +1,40 @@
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+
+  {{- $separator := printf " %s " (.Site.Params.separator | default "-") -}}
+  {{- $title := .Site.Title -}}
+  {{- if and .IsHome (.Site.Params.subtitle) -}}
+    {{- $title = printf "%s%s%s" $title $separator .Site.Params.subtitle -}}
+  {{- end -}}
+  {{- if and (not .IsHome) .Title -}}
+    {{- $title = printf "%s%s%s" .Title $separator .Site.Title -}}
+  {{- end -}}
+
+  <title>{{ $title }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  {{- $keywords := .Site.Params.keywords -}}
+  {{- with .Params.tags -}}
+    {{- if (reflect.IsSlice .) -}}
+      {{- $keywords = delimit . "," -}}
+    {{- else -}}
+      {{- $keywords = printf "%v" . -}}
+    {{- end -}}
+  {{- end -}}
+  <meta name="keywords" content="{{ $keywords }}">
+
+  {{- with .Site.Params.description -}}
+  <meta name="description" content="{{ . }}">
+  {{- end -}}
+
+  {{- with .Site.Params.favicon -}}
+  <link rel="shortcut icon" type="image/x-icon" href="{{ . }}?v=1.02">
+  {{- end -}}
+
+  {{- with .Site.Params.rss -}}
+  <link rel="alternate" href="{{ . }}" title="{{ $.Site.Title }}" type="application/atom+xml">
+  {{- end -}}
+
+  <link rel="stylesheet" href="/css/style.css">
+</head>

@@ -1,0 +1,15 @@
+{{ define "main" }}
+  {{ partial "header.html" . }}
+  <section class="archive">
+    <ul class="post-archive">
+      {{- range .Data.Terms.Alphabetical -}}
+        <li class="post-item">
+          <a class="post-title" href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a>
+        </li>
+      {{- end -}}
+    </ul>
+  </section>
+  {{ partial "footer.html" . }}
+{{ end }}
+
+

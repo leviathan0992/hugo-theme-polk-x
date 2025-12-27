@@ -1,0 +1,28 @@
+{{ define "main" }}
+  {{ partial "header.html" . }}
+
+  <article class="post">
+    <div class="post-title">
+      <h1 class="article-title">{{ .Title }}</h1>
+    </div>
+
+    {{/* 文章目录 (match Hexo toc() DOM) */}}
+    {{- if .Params.toc | default true -}}
+      {{ partial "toc.html" . }}
+    {{- end -}}
+
+    <div class="post-content">
+      {{ .Content }}
+    </div>
+    <div class="post-meta"></div>
+
+    <div class="post-footer">
+      <span class="post-time" style="color:#646060;font-size:13px">{{ .Date.Format "2006-01-02" }}</span>
+      <a href="#top" class="top">Back to Top</a>
+    </div>
+  </article>
+
+  {{ partial "footer.html" . }}
+{{ end }}
+
+

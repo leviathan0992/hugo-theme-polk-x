@@ -1,0 +1,37 @@
+{{- $all := where .Site.RegularPages "Section" "posts" -}}
+{{- $pages := slice -}}
+{{- range $all -}}
+  {{- if ne (partial "has_tag.html" (dict "page" . "tag" "draft")) "true" -}}
+    {{- $pages = $pages | append . -}}
+  {{- end -}}
+{{- end -}}
+{{- $pages = sort $pages "Date" "desc" -}}
+{{- $pages = first 20 $pages -}}
+{{- $updated := now -}}
+{{- if gt (len $pages) 0 -}}
+  {{- $updated = (index $pages 0).Date -}}
+{{- end -}}
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>{{ .Site.Title }}</title>
+  <link href="{{ .Site.BaseURL }}" />
+  <link href="{{ .Permalink }}" rel="self" />
+  <id>{{ .Site.BaseURL }}</id>
+  <updated>{{ $updated.Format "2006-01-02T15:04:05Z07:00" }}</updated>
+  <author>
+    <name>{{ .Site.Params.author | default .Site.Title }}</name>
+  </author>
+
+  {{- range $pages -}}
+  <entry>
+    <title>{{ .Title | html }}</title>
+    <link href="{{ .Permalink }}" />
+    <id>{{ .Permalink }}</id>
+    <updated>{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}</updated>
+    <summary type="html"><![CDATA[{{ .Summary | safeHTML }}]]></summary>
+    <content type="html"><![CDATA[{{ .Content | safeHTML }}]]></content>
+  </entry>
+  {{- end -}}
+</feed>
+
+

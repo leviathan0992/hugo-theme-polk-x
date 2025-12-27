@@ -1,0 +1,30 @@
+{{- /*
+Output "true" or "false" depending on whether the page has a given tag.
+Supports Hexo-like front matter where `tags:` may be a string or a list.
+
+Usage:
+  {{ eq (partial "has_tag.html" (dict "page" . "tag" "draft")) "true" }}
+*/ -}}
+
+{{- $p := .page -}}
+{{- $want := (.tag | default "" | strings.TrimSpace | lower) -}}
+{{- $tags := $p.Params.tags -}}
+{{- $has := false -}}
+
+{{- if and $want $tags -}}
+  {{- if reflect.IsSlice $tags -}}
+    {{- range $tags -}}
+      {{- if eq (lower (strings.TrimSpace (printf "%v" .))) $want -}}
+        {{- $has = true -}}
+      {{- end -}}
+    {{- end -}}
+  {{- else -}}
+    {{- if eq (lower (strings.TrimSpace (printf "%v" $tags))) $want -}}
+      {{- $has = true -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- if $has -}}true{{- else -}}false{{- end -}}
+
+

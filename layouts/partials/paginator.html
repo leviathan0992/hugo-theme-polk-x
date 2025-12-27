@@ -1,0 +1,20 @@
+{{- $p := . -}}
+{{- if and $p (gt $p.TotalPages 1) -}}
+  <nav class="page-nav">
+    {{- if $p.HasPrev -}}
+      <a class="prev" href="{{ $p.Prev.URL }}">Prev</a>
+    {{- end -}}
+
+    {{- range $p.Pagers -}}
+      {{- if eq .PageNumber $p.PageNumber -}}
+        <span class="page-number current">{{ .PageNumber }}</span>
+      {{- else -}}
+        <a class="page-number" href="{{ .URL }}">{{ .PageNumber }}</a>
+      {{- end -}}
+    {{- end -}}
+
+    {{- if $p.HasNext -}}
+      <a class="next" href="{{ $p.Next.URL }}">Next</a>
+    {{- end -}}
+  </nav>
+{{- end -}}

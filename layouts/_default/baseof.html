@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="<%= config.language || 'en' %>">
-  <%- partial('_partial/head') %>
+<html lang="{{ .Site.Language.Lang | default "en" }}">
+  {{ partial "head.html" . }}
   <body id="top">
     <div class="container">
-      <%- body %>
+      {{ block "main" . }}{{ end }}
     </div>
     <script src="/js/main.js" defer></script>
   </body>

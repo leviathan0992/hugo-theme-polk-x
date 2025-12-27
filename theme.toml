@@ -1,0 +1,14 @@
+name = "polk-x"
+license = "MIT"
+licenselink = "https://opensource.org/licenses/MIT"
+description = "A minimal Hugo blog theme with clean design and simple layout."
+homepage = "https://github.com/leviathan0992/hugo-theme-polk-x"
+demosite = "https://leviathan.vip"
+tags = ["blog", "minimal", "simple", "clean", "responsive"]
+features = ["archive", "tags", "pagination", "rss", "atom"]
+min_version = "0.112.0"
+
+[author]
+  name = "Leviathan"
+  homepage = "https://leviathan.vip"
+

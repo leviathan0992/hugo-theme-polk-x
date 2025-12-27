@@ -1,0 +1,17 @@
+{{ define "main" }}
+  {{ partial "header.html" . }}
+  <section class="archive">
+    <h1 class="header">{{ .Title }}</h1>
+    <ul class="post-archive">
+      {{- $p := .Paginate (.Pages.ByDate.Reverse) -}}
+      {{- range $p.Pages -}}
+        <li class="post-item">
+          <time class="post-date">{{ .Date.Format "2006-01-02" }}</time>
+          <a class="post-title" href="{{ .RelPermalink }}">{{ .Title }}</a>
+        </li>
+      {{- end -}}
+    </ul>
+  </section>
+  {{ partial "paginator.html" $p }}
+  {{ partial "footer.html" . }}
+{{ end }}
