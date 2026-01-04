@@ -11,10 +11,13 @@ body,
 .container {
   height: 100%;
   max-height: 100%;
-  font-family: "Lato", "PingFang SC", "Microsoft YaHei", sans-serif;
+  /* Professional Chinese font stack for technical blogs */
+  /* Source Han Sans is ideal for technical content - modern, clean, professional */
+  font-family: "Source Han Sans SC", "Noto Sans SC", "PingFang SC",
+               "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
   letter-spacing: 0.01rem;
   line-height: 1.85rem;
-  color: #333333;
+  color: #1a1a1a;
   background: #fafafa;
 }
 
@@ -102,7 +105,71 @@ a {
 }
 
 .post .post-content {
-  text-align: justify;
+  text-align: left;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  hyphens: auto;
+  line-height: 1.85rem; /* Relative line height for better readability of technical content */
+}
+
+/* Heading hierarchy for clear visual structure */
+.post .post-content h1 {
+  font-size: 2em;
+  font-weight: 700;
+  margin: 1.2em 0 0.6em 0; /* Optimized spacing: more space above, less below */
+  line-height: 1.3;
+  color: #24292f;
+  /* Add subtle bottom border for visual separation */
+  border-bottom: 1px solid #e1e4e8;
+  padding-bottom: 0.3em;
+}
+
+.post .post-content h2 {
+  font-size: 1.5em;
+  font-weight: 600;
+  margin: 1.1em 0 0.5em 0; /* Balanced spacing for section breaks */
+  line-height: 1.4;
+  color: #24292f;
+}
+
+.post .post-content h3 {
+  font-size: 1.25em;
+  font-weight: 600;
+  margin: 0.9em 0 0.4em 0; /* Tighter spacing for subsections */
+  line-height: 1.4;
+  color: #24292f;
+}
+
+.post .post-content h4 {
+  font-size: 1.1em;
+  font-weight: 600;
+  margin: 0.8em 0 0.35em 0; /* Consistent with h3 but slightly tighter */
+  line-height: 1.4;
+  color: #24292f;
+}
+
+.post .post-content h5,
+.post .post-content h6 {
+  font-size: 1em;
+  font-weight: 600;
+  margin: 0.7em 0 0.3em 0; /* Minimal spacing for minor headings */
+  line-height: 1.4;
+  color: #24292f;
+}
+
+/* Prevent excessive spacing around inline code */
+.post .post-content code {
+  /* Force inline code to not break, preventing justify from adding space */
+  word-spacing: normal;
+  letter-spacing: normal;
+  /* Ensure no extra spacing before/after inline code */
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  /* Minimize padding to reduce visual spacing, especially around parentheses */
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  /* Use minimal background padding instead */
+  background-clip: padding-box;
 }
 
 .post .post-content a {
@@ -116,12 +183,33 @@ a {
 .post .post-content ul,
 .post .post-content ol {
   text-align: left;
+  margin: 1em 0; /* Consistent spacing around lists */
+  padding-left: 1.5em; /* Indent for better visual hierarchy */
+}
+
+.post .post-content ul {
+  list-style-type: disc; /* Clear disc markers */
+}
+
+.post .post-content ol {
+  list-style-type: decimal; /* Clear decimal markers */
 }
 
 .post .post-content ul li,
 .post .post-content ol li {
-  padding: 0px;
-  line-height: 1.85em;
+  padding: 0;
+  line-height: 1.75; /* Consistent relative line height */
+  margin: 0.4em 0; /* Tighter spacing between list items */
+  /* Better spacing for nested lists */
+}
+
+.post .post-content ul ul,
+.post .post-content ol ol,
+.post .post-content ul ol,
+.post .post-content ol ul {
+  margin-top: 0.3em;
+  margin-bottom: 0.3em;
+  padding-left: 1.2em; /* Nested list indentation */
 }
 
 .post figure {
@@ -142,10 +230,27 @@ a {
 }
 
 .post blockquote {
-  margin: 0;
-  padding: 0 15px;
-  color: #777;
-  border-left: 4px solid #ddd;
+  margin: 1.2em 0; /* More breathing room around quotes */
+  padding: 0.8em 1.2em; /* Better padding for readability */
+  padding-left: 1.5em; /* Extra left padding for border */
+  color: #57606a; /* Slightly darker for better readability */
+  background-color: #f6f8fa; /* Subtle background for emphasis */
+  border-left: 4px solid #0969da; /* Modern blue accent instead of gray */
+  border-radius: 0 4px 4px 0; /* Rounded right corners for modern look */
+  font-style: normal; /* Keep normal style, color provides emphasis */
+  /* Ensure proper spacing for nested content */
+}
+
+.post blockquote p {
+  margin: 0.5em 0; /* Spacing for paragraphs inside blockquote */
+}
+
+.post blockquote p:first-child {
+  margin-top: 0; /* Remove top margin for first paragraph */
+}
+
+.post blockquote p:last-child {
+  margin-bottom: 0; /* Remove bottom margin for last paragraph */
 }
 
 .post pre {
@@ -161,7 +266,7 @@ a {
    Hugo's highlight DOM can make the 110% feel too large; constrain blocks only. */
 .post figure.highlight pre,
 .post figure.highlight code {
-  font-size: 100%;
+  font-size: 0.95em; /* Slightly smaller font size for code blocks */
 }
 
 /* If any inner .highlight wrapper remains, neutralize it inside code blocks */
@@ -175,7 +280,7 @@ a {
   padding: 0.7em 1.5em; /* keep original horizontal padding, slightly more vertical */
   line-height: 1.55;
   overflow-x: auto;
-  border: 0;
+  /* Border is inherited from .post figure.highlight pre */
   box-shadow: inset 0 0 0 1px rgba(27, 31, 36, 0.025);
 }
 
@@ -184,6 +289,7 @@ a {
   font-feature-settings: "liga" 0, "calt" 0;
   -moz-tab-size: 4;
   tab-size: 4;
+  font-size: 0.95em; /* Slightly smaller font size for code blocks */
 }
 
 /* Subtle line hover to aid scanning large blocks */
@@ -196,19 +302,26 @@ a {
 }
 
 .post code {
-  font-family: "lucida grande", "lucida sans unicode", lucida, helvetica,
-    "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif !important;
-  font-size: 1.02em;
-  background: #eee;
-  margin: 5px;
-  padding: 0 5px;
+  /* Professional monospace font stack for inline code with Chinese support */
+  font-family: "JetBrains Mono", "SF Mono", "Monaco", "Menlo", "Consolas",
+               "Liberation Mono", "Courier New", monospace !important;
+  font-size: 0.9em;
+  background: #f6f8fa;
+  /* Remove margin to prevent large gaps around parentheses */
+  margin: 0;
+  /* Reduce padding to minimize spacing around inline code */
+  padding: 0 3px;
+  /* Prevent justify from adding extra space around inline code */
+  display: inline;
+  white-space: pre-wrap;
 }
 
 /* Code blocks (Hugo/Goldmark renders fenced blocks as <pre><code>...).
    Prevent inline-code styling from breaking block layout. */
 .post pre code {
   /* Hexo highlight blocks didn't use <code>, so inline-code styles should NOT apply here. */
-  font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
+  font-family: "JetBrains Mono", "SF Mono", Menlo, Monaco, Consolas,
+               "Liberation Mono", "Courier New", monospace !important;
   background: transparent;
   margin: 0;
   padding: 0;
@@ -224,12 +337,12 @@ a {
 }
 
 .post figure.highlight pre {
-  background: #f7f7f7;
+  background: #f6f8fa; /* Slightly lighter, more modern background */
 }
 
 .post figure.highlight .chroma {
-  /* Make base code darker to increase contrast against comments on light-gray background */
-  color: #0b0f14;
+  /* Darker base color for better contrast against light background */
+  color: #24292f;
 }
 
 /* comments */
@@ -349,12 +462,39 @@ a {
 }
 
 .post p {
-  line-height: 1.5em;
+  line-height: 1.75; /* Consistent relative line height */
+  /* Optimized paragraph spacing for technical content */
+  margin: 0 0 1.1em 0; /* Top: 0 (handled by previous element), Bottom: 1.1em for breathing room */
+}
+
+/* First paragraph after headings should have less top margin */
+.post .post-content h1 + p,
+.post .post-content h2 + p,
+.post .post-content h3 + p,
+.post .post-content h4 + p,
+.post .post-content h5 + p,
+.post .post-content h6 + p {
+  margin-top: 0; /* No extra space after headings */
+}
+
+/* Last paragraph in a section should have consistent bottom margin */
+.post .post-content p:last-child {
+  margin-bottom: 1.1em; /* Consistent with other paragraphs */
+}
+
+/* Paragraphs after lists or code blocks */
+.post .post-content ul + p,
+.post .post-content ol + p,
+.post .post-content pre + p,
+.post .post-content figure + p {
+  margin-top: 1.1em; /* Space after lists/code blocks */
 }
 
 .post .toc {
   padding: 1em;
+  padding-bottom: 0.5em; /* Reduced bottom padding for less gap before title */
   list-style-type: square;
+  margin-bottom: 0.5em; /* Reduced margin for less gap before title */
 }
 
 .post .toc-child {
@@ -476,4 +616,26 @@ footer .author {
   color: #000;
 }
 
+/* Mobile optimizations for better readability on small screens */
+@media screen and (max-width: 768px) {
+  .post .post-content {
+    font-size: 0.95em; /* Slightly smaller font on mobile for better fit */
+  }
 
+  .post figure.highlight pre.chroma {
+    padding: 0.5em 1em; /* Reduced padding on mobile */
+    font-size: 0.9em; /* Smaller code font on mobile */
+  }
+
+  .container {
+    padding: 0 10px; /* Reduced container padding on mobile */
+  }
+
+  .post {
+    padding: 0 10px; /* Reduced post padding on mobile */
+  }
+
+  .page {
+    margin: 0 10px; /* Reduced page margin on mobile */
+  }
+}
