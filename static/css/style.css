@@ -464,7 +464,7 @@ a:focus-visible {
   margin: 0;
   padding: 0.5em 1.5em;
   overflow: auto;
-  font-size: 110%;
+  font-size: 100%;
   line-height: 1.5;
   background-color: var(--c-pre-bg);
 }
@@ -478,7 +478,7 @@ a:focus-visible {
    Hugo's highlight DOM can make the 110% feel too large; constrain blocks only. */
 .post figure.highlight pre,
 .post figure.highlight code {
-  font-size: 0.95em; /* Slightly smaller font size for code blocks */
+  font-size: 0.9em; /* Smaller code font size for blocks */
 }
 
 /* If any inner .highlight wrapper remains, neutralize it inside code blocks */
@@ -501,7 +501,7 @@ a:focus-visible {
   font-feature-settings: "liga" 0, "calt" 0;
   -moz-tab-size: 4;
   tab-size: 4;
-  font-size: 0.95em; /* Slightly smaller font size for code blocks */
+  font-size: 0.9em; /* Smaller code font size for blocks */
 }
 
 /* Subtle line hover to aid scanning large blocks */
