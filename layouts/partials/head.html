@@ -14,6 +14,28 @@
   <title>{{ $title }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <script>
+    (() => {
+      const storageKey = 'theme';
+      let saved = null;
+      try {
+        saved = localStorage.getItem(storageKey);
+      } catch {}
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (saved === 'system') {
+        try {
+          localStorage.removeItem(storageKey);
+        } catch {}
+        saved = null;
+      }
+      if (saved !== 'dark' && saved !== 'light') saved = null;
+
+      const theme = saved ? saved : prefersDark ? 'dark' : 'light';
+      document.documentElement.dataset.themePref = saved ? theme : 'system';
+      document.documentElement.dataset.theme = theme;
+    })();
+  </script>
+
   {{- $keywords := .Site.Params.keywords -}}
   {{- with .Params.tags -}}
     {{- if (reflect.IsSlice .) -}}
@@ -29,7 +51,7 @@
   {{- end -}}
 
   {{- with .Site.Params.favicon -}}
-  <link rel="shortcut icon" type="image/x-icon" href="{{ . }}?v=1.02">
+  <link rel="shortcut icon" type="image/x-icon" href="{{ . }}">
   {{- end -}}
 
   {{- with .Site.Params.rss -}}

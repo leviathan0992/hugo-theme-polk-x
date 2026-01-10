@@ -1,7 +1,15 @@
 {{ define "main" }}
   {{ partial "header.html" . }}
   <section class="archive">
-    <h1 class="header">{{ .Title }}</h1>
+    {{- $showHeader := true -}}
+    {{- if and (eq .Kind "term") (eq .Data.Plural "tags") -}}
+      {{- $whitelist := .Site.Params.tagTitleWhitelist | default (slice "summary" "about me") -}}
+      {{- $whitelistLower := apply $whitelist "lower" "." -}}
+      {{- $showHeader = in $whitelistLower (lower .Title) -}}
+    {{- end -}}
+    {{- if $showHeader -}}
+      <h1 class="header">{{ .Title }}</h1>
+    {{- end -}}
     <ul class="post-archive">
       {{- $p := .Paginate (.Pages.ByDate.Reverse) -}}
       {{- range $p.Pages -}}
