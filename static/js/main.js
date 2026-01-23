@@ -39,7 +39,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!button) return;
     const current = document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
     const isDark = current === 'dark';
-    button.textContent = isDark ? '🌙' : '☀️';
+    /* Dark mode shows sun (click to switch to light), light mode shows moon (click to switch to dark) */
+    button.textContent = isDark ? '☀️' : '🌙';
     button.setAttribute('aria-pressed', isDark ? 'true' : 'false');
     button.setAttribute('aria-label', `Theme: ${current} (click to switch)`);
   };

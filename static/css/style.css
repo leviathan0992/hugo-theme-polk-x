@@ -72,15 +72,16 @@ html[data-theme="dark"] {
 
 html[data-theme="dark"] {
   --c-bg: #0d0d0d;
-  --c-text: #f2f2f2;
-  --c-link: #f2f2f2;
+  /* 主要文字颜色：--main-text-primary-color: var(--grey-95) */
+  --c-text: #f2f2f2; /* 主体正文文字（grey-95） */
+  --c-link: #f2f2f2; /* 保持链接颜色不变 */
   --c-focus: #99d8ff;
   --c-border: #333333;
   --c-border-soft: #262626;
-  --c-muted: #b2b2b2;
-  --c-muted-2: #808080;
-  --c-subtitle: #999999;
-  --c-heading: #ffffff;
+  --c-muted: #b2b2b2; /* 次要文字（grey-70） */
+  --c-muted-2: #808080; /* 第三级文字（grey-50） */
+  --c-subtitle: #808080; /* 第三级文字（grey-50） */
+  --c-heading: #ffffff; /* 标题文字（grey-100，加粗文字） */
   --c-heading-border: #262626;
   --c-hr: #262626;
   --c-panel: #111111;
@@ -308,7 +309,7 @@ a:focus-visible {
   overflow-wrap: anywhere;
   word-break: break-word;
   hyphens: auto;
-  font-size: 18px;
+  font-size: 17px;
   line-height: 1.625;
 }
 
@@ -427,14 +428,7 @@ a:focus-visible {
   width: 100%;
 }
 
-.post figure table .code {
-  border: 0;
-  padding: 0;
-}
-
-.post figure .gutter {
-  display: none;
-}
+/* Code block styles use Hugo's native structure */
 
 .post blockquote {
   margin: 1.2em 0; /* More breathing room around quotes */
@@ -474,42 +468,34 @@ a:focus-visible {
   color: var(--c-code-text);
 }
 
-/* Fenced code blocks (Hexo/Hugo highlight wrapper): keep closer to original Hexo visual size.
-   Hugo's highlight DOM can make the 110% feel too large; constrain blocks only. */
-.post figure.highlight pre,
-.post figure.highlight code {
-  font-size: 0.9em; /* Smaller code font size for blocks */
-}
-
-/* If any inner .highlight wrapper remains, neutralize it inside code blocks */
-.post figure.highlight .highlight {
-  background: transparent;
-  padding: 0;
+/* Fenced code blocks (Hugo native format): keep closer to original visual size. */
+.post .highlight pre,
+.post .highlight code {
+  font-size: 15px; /* Fixed size to match original (18px * 0.9), independent of body font size */
 }
 
 /* Code block readability tweaks (subtle, keep original look) */
-.post figure.highlight pre.chroma {
+.post .highlight pre.chroma {
   padding: 0.7em 1.5em; /* keep original horizontal padding, slightly more vertical */
   line-height: 1.55;
   overflow-x: auto;
-  /* Border is inherited from .post figure.highlight pre */
   box-shadow: inset 0 0 0 1px var(--code-inset-border);
 }
 
-.post figure.highlight pre.chroma code {
+.post .highlight pre.chroma code {
   font-variant-ligatures: none;
   font-feature-settings: "liga" 0, "calt" 0;
   -moz-tab-size: 4;
   tab-size: 4;
-  font-size: 0.9em; /* Smaller code font size for blocks */
+  font-size: 15px; /* Fixed size to match original (18px * 0.9), independent of body font size */
 }
 
 /* Subtle line hover to aid scanning large blocks */
-.post figure.highlight .chroma .line {
+.post .highlight .chroma .line {
   display: block;
 }
 
-.post figure.highlight .chroma .line:hover {
+.post .highlight .chroma .line:hover {
   background: var(--code-line-hover-bg);
 }
 
@@ -517,7 +503,7 @@ a:focus-visible {
   /* Professional monospace font stack for inline code with Chinese support */
   font-family: "JetBrains Mono", "SF Mono", "Monaco", "Menlo", "Consolas",
                "Liberation Mono", "Courier New", monospace !important;
-  font-size: 0.9em;
+  font-size: 15px; /* Fixed size to match code blocks */
   background: var(--c-inline-code-bg);
   /* Remove margin to prevent large gaps around parentheses */
   margin: 0;
@@ -543,132 +529,132 @@ a:focus-visible {
 /* GitHub VS Code Theme (GitHub Light Default) inspired syntax highlighting.
    Reference: https://github.com/primer/github-vscode-theme
    Scoped to code blocks only. */
-.post figure.highlight {
+.post .highlight {
   background: transparent;
   border-radius: 0;
 }
 
-.post figure.highlight pre {
+.post .highlight pre {
   background: var(--c-panel); /* Slightly lighter, more modern background */
 }
 
-.post figure.highlight .chroma {
+.post .highlight .chroma {
   /* Darker base color for better contrast against light background */
   color: var(--c-code-text);
 }
 
 /* comments */
-.post figure.highlight .chroma .c,
-.post figure.highlight .chroma .ch,
-.post figure.highlight .chroma .cm,
-.post figure.highlight .chroma .cp,
-.post figure.highlight .chroma .cpf,
-.post figure.highlight .chroma .c1,
-.post figure.highlight .chroma .cs {
+.post .highlight .chroma .c,
+.post .highlight .chroma .ch,
+.post .highlight .chroma .cm,
+.post .highlight .chroma .cp,
+.post .highlight .chroma .cpf,
+.post .highlight .chroma .c1,
+.post .highlight .chroma .cs {
   /* More muted than code, but still readable on #f7f7f7 */
   color: var(--syn-comment);
   font-style: normal;
 }
 
 /* keywords */
-.post figure.highlight .chroma .k,
-.post figure.highlight .chroma .kc,
-.post figure.highlight .chroma .kd,
-.post figure.highlight .chroma .kn,
-.post figure.highlight .chroma .kp,
-.post figure.highlight .chroma .kr,
-.post figure.highlight .chroma .kt {
+.post .highlight .chroma .k,
+.post .highlight .chroma .kc,
+.post .highlight .chroma .kd,
+.post .highlight .chroma .kn,
+.post .highlight .chroma .kp,
+.post .highlight .chroma .kr,
+.post .highlight .chroma .kt {
   color: var(--syn-keyword);
 }
 
 /* strings */
-.post figure.highlight .chroma .s,
-.post figure.highlight .chroma .sa,
-.post figure.highlight .chroma .sb,
-.post figure.highlight .chroma .sc,
-.post figure.highlight .chroma .dl,
-.post figure.highlight .chroma .sd,
-.post figure.highlight .chroma .s2,
-.post figure.highlight .chroma .se,
-.post figure.highlight .chroma .sh,
-.post figure.highlight .chroma .si,
-.post figure.highlight .chroma .sx,
-.post figure.highlight .chroma .sr,
-.post figure.highlight .chroma .s1,
-.post figure.highlight .chroma .ss {
+.post .highlight .chroma .s,
+.post .highlight .chroma .sa,
+.post .highlight .chroma .sb,
+.post .highlight .chroma .sc,
+.post .highlight .chroma .dl,
+.post .highlight .chroma .sd,
+.post .highlight .chroma .s2,
+.post .highlight .chroma .se,
+.post .highlight .chroma .sh,
+.post .highlight .chroma .si,
+.post .highlight .chroma .sx,
+.post .highlight .chroma .sr,
+.post .highlight .chroma .s1,
+.post .highlight .chroma .ss {
   color: var(--syn-string);
 }
 
 /* numbers */
-.post figure.highlight .chroma .m,
-.post figure.highlight .chroma .mb,
-.post figure.highlight .chroma .mf,
-.post figure.highlight .chroma .mh,
-.post figure.highlight .chroma .mi,
-.post figure.highlight .chroma .il,
-.post figure.highlight .chroma .mo {
+.post .highlight .chroma .m,
+.post .highlight .chroma .mb,
+.post .highlight .chroma .mf,
+.post .highlight .chroma .mh,
+.post .highlight .chroma .mi,
+.post .highlight .chroma .il,
+.post .highlight .chroma .mo {
   color: var(--syn-number);
 }
 
 /* function / method names (C++/Python/Go), SQL functions, shell builtins */
-.post figure.highlight .chroma .nf,
-.post figure.highlight .chroma .fm {
+.post .highlight .chroma .nf,
+.post .highlight .chroma .fm {
   color: var(--syn-func);
 }
 
 /* types / classes / namespaces */
-.post figure.highlight .chroma .nc,
-.post figure.highlight .chroma .nn {
+.post .highlight .chroma .nc,
+.post .highlight .chroma .nn {
   color: var(--syn-type);
 }
 
 /* variables/identifiers */
-.post figure.highlight .chroma .n,
-.post figure.highlight .chroma .nx,
-.post figure.highlight .chroma .py,
-.post figure.highlight .chroma .nb,
-.post figure.highlight .chroma .bp,
-.post figure.highlight .chroma .vc,
-.post figure.highlight .chroma .vg,
-.post figure.highlight .chroma .vi,
-.post figure.highlight .chroma .no,
-.post figure.highlight .chroma .na,
-.post figure.highlight .chroma .nl {
+.post .highlight .chroma .n,
+.post .highlight .chroma .nx,
+.post .highlight .chroma .py,
+.post .highlight .chroma .nb,
+.post .highlight .chroma .bp,
+.post .highlight .chroma .vc,
+.post .highlight .chroma .vg,
+.post .highlight .chroma .vi,
+.post .highlight .chroma .no,
+.post .highlight .chroma .na,
+.post .highlight .chroma .nl {
   color: var(--syn-ident);
 }
 
 /* variables (make slightly more distinct, closer to editor feel) */
-.post figure.highlight .chroma .nv,
-.post figure.highlight .chroma .vc,
-.post figure.highlight .chroma .vg,
-.post figure.highlight .chroma .vi {
+.post .highlight .chroma .nv,
+.post .highlight .chroma .vc,
+.post .highlight .chroma .vg,
+.post .highlight .chroma .vi {
   color: var(--syn-var);
 }
 
 /* tags / attributes */
-.post figure.highlight .chroma .nt {
+.post .highlight .chroma .nt {
   color: var(--syn-tag);
 }
 
 /* operators / punctuation */
-.post figure.highlight .chroma .o,
-.post figure.highlight .chroma .ow,
-.post figure.highlight .chroma .p {
+.post .highlight .chroma .o,
+.post .highlight .chroma .ow,
+.post .highlight .chroma .p {
   color: var(--syn-punct);
 }
 
 /* errors + diff-like tokens */
-.post figure.highlight .chroma .err {
+.post .highlight .chroma .err {
   color: var(--syn-error);
   background: transparent;
 }
 
-.post figure.highlight .chroma .gd {
+.post .highlight .chroma .gd {
   color: var(--syn-del-text);
   background: var(--syn-del-bg);
 }
 
-.post figure.highlight .chroma .gi {
+.post .highlight .chroma .gi {
   color: var(--syn-ins-text);
   background: var(--syn-ins-bg);
 }
@@ -698,7 +684,7 @@ a:focus-visible {
 .post .post-content ul + p,
 .post .post-content ol + p,
 .post .post-content pre + p,
-.post .post-content figure + p {
+.post .post-content .highlight + p {
   margin-top: 1.1em; /* Space after lists/code blocks */
 }
 
@@ -713,9 +699,10 @@ a:focus-visible {
   list-style: square;
 }
 
-/* TOC: keep original Hexo style, just a tiny readability touch */
+/* TOC: keep original style, just a tiny readability touch */
 .post .toc li,
 .post .toc-child li {
+  font-size: 1.05em; /* Larger font for TOC */
   line-height: 1.85em;
 }
 
@@ -868,9 +855,9 @@ footer a:focus-visible {
     font-size: 0.95em; /* Slightly smaller font on mobile for better fit */
   }
 
-  .post figure.highlight pre.chroma {
+  .post .highlight pre.chroma {
     padding: 0.5em 1em; /* Reduced padding on mobile */
-    font-size: 0.9em; /* Smaller code font on mobile */
+    font-size: 15px; /* Fixed size to match desktop, consistent across devices */
   }
 
   .container {

@@ -6,7 +6,7 @@
       <h1 class="article-title">{{ .Title }}</h1>
     </div>
 
-    {{/* 文章目录 (match Hexo toc() DOM) */}}
+    {{/* 文章目录 */}}
     {{- if .Params.toc | default true -}}
       {{ partial "toc.html" . }}
     {{- end -}}

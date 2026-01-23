@@ -1,6 +1,6 @@
 {{- /*
 Output "true" or "false" depending on whether the page has a given tag.
-Supports Hexo-like front matter where `tags:` may be a string or a list.
+Supports front matter where `tags:` may be a string or a list.
 
 Usage:
   {{ eq (partial "has_tag.html" (dict "page" . "tag" "draft")) "true" }}

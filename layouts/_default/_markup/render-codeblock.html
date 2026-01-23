@@ -1,31 +1,7 @@
-{{- /*
-Hexo highlight output (roughly):
-<figure class="highlight ..."><table><tr><td class="gutter">...</td><td class="code">...</td></tr></table></figure>
-
-To get 1:1-ish DOM/CSS behavior with the existing polk-x styles, we wrap Hugo's
-highlighted HTML in the same figure/table structure. The theme CSS already hides
-.gutter, but we keep it to match structure.
-*/ -}}
-
+{{- /* Use Hugo's native highlight output format: <div class="highlight"><pre class="chroma"><code>...</code></pre></div> */ -}}
 {{- $lang := .Type | default "" -}}
 {{- $opts := dict "lineNos" false "noClasses" false -}}
 {{- $html := transform.Highlight .Inner $lang $opts -}}
-{{- /* transform.Highlight returns template.HTML; cast to string so replaceRE works reliably */ -}}
-{{- $s := printf "%s" $html -}}
-{{- /* Strip Hugo's outer <div class="highlight"> wrapper to match Hexo DOM closer */ -}}
-{{- $s = strings.TrimSpace $s -}}
-{{- $s = replace $s "<div class=\"highlight\">" "" -}}
-{{- $s = replaceRE `(?s)</pre>\\s*</div>\\s*$` `</pre>` $s -}}
-
-<figure class="highlight{{ if $lang }} {{ $lang }}{{ end }}">
-  <table>
-    <tbody>
-      <tr>
-        <td class="gutter"><pre></pre></td>
-        <td class="code">{{ $s | safeHTML }}</td>
-      </tr>
-    </tbody>
-  </table>
-</figure>
+{{- $html | safeHTML -}}
 
 
