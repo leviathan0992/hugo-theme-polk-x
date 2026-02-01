@@ -74,14 +74,10 @@ html[data-theme="dark"] {
   --c-focus: #99d8ff;
   --c-border: #2a2a2a;
   --c-border-soft: #222222;
-  --c-muted: #b2b2b2;
-  /* 次要文字（grey-70） */
-  --c-muted-2: #808080;
-  /* 第三级文字（grey-50） */
-  --c-subtitle: #808080;
-  /* 第三级文字（grey-50） */
-  --c-heading: #ffffff;
-  /* 标题文字（grey-100，加粗文字） */
+  --c-muted: #b2b2b2; /* 次要文字（grey-70） */
+  --c-muted-2: #808080; /* 第三级文字（grey-50） */
+  --c-subtitle: #808080; /* 第三级文字（grey-50） */
+  --c-heading: #ffffff; /* 标题文字（grey-100，加粗文字） */
   --c-heading-border: #262626;
   --c-hr: #262626;
   --c-panel: #1e1e1e;
@@ -168,7 +164,7 @@ body,
   /* Professional Chinese font stack for technical blogs */
   /* Source Han Sans is ideal for technical content - modern, clean, professional */
   font-family: "Source Han Sans SC", "Noto Sans SC", "PingFang SC",
-    "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+               "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
   letter-spacing: 0.01rem;
   line-height: 1.85rem;
   color: var(--c-text);
@@ -317,8 +313,7 @@ a:focus-visible {
 .post .post-content h1 {
   font-size: 2.25rem;
   font-weight: 700;
-  margin: 1.2em 0 0.6em 0;
-  /* Optimized spacing: more space above, less below */
+  margin: 1.2em 0 0.6em 0; /* Optimized spacing: more space above, less below */
   line-height: 1.3;
   color: var(--c-heading);
   /* Add subtle bottom border for visual separation */
@@ -349,8 +344,7 @@ a:focus-visible {
 .post .post-content h3 {
   font-size: 1.5rem;
   font-weight: 600;
-  margin: 0.9em 0 0.4em 0;
-  /* Tighter spacing for subsections */
+  margin: 0.9em 0 0.4em 0; /* Tighter spacing for subsections */
   line-height: 1.4;
   color: var(--c-heading);
 }
@@ -358,8 +352,7 @@ a:focus-visible {
 .post .post-content h4 {
   font-size: 1.125rem;
   font-weight: 600;
-  margin: 0.8em 0 0.35em 0;
-  /* Consistent with h3 but slightly tighter */
+  margin: 0.8em 0 0.35em 0; /* Consistent with h3 but slightly tighter */
   line-height: 1.4;
   color: var(--c-heading);
 }
@@ -368,8 +361,7 @@ a:focus-visible {
 .post .post-content h6 {
   font-size: 1em;
   font-weight: 600;
-  margin: 0.7em 0 0.3em 0;
-  /* Minimal spacing for minor headings */
+  margin: 0.7em 0 0.3em 0; /* Minimal spacing for minor headings */
   line-height: 1.4;
   color: var(--c-heading);
 }
@@ -408,29 +400,23 @@ a:focus-visible {
 .post .post-content ul,
 .post .post-content ol {
   text-align: left;
-  margin: 1em 0;
-  /* Consistent spacing around lists */
-  padding-left: 1.5em;
-  /* Indent for better visual hierarchy */
+  margin: 1em 0; /* Consistent spacing around lists */
+  padding-left: 1.5em; /* Indent for better visual hierarchy */
 }
 
 .post .post-content ul {
-  list-style-type: disc;
-  /* Clear disc markers */
+  list-style-type: disc; /* Clear disc markers */
 }
 
 .post .post-content ol {
-  list-style-type: decimal;
-  /* Clear decimal markers */
+  list-style-type: decimal; /* Clear decimal markers */
 }
 
 .post .post-content ul li,
 .post .post-content ol li {
   padding: 0;
-  line-height: 1.75;
-  /* Consistent relative line height */
-  margin: 0.4em 0;
-  /* Tighter spacing between list items */
+  line-height: 1.75; /* Consistent relative line height */
+  margin: 0.4em 0; /* Tighter spacing between list items */
   /* Better spacing for nested lists */
 }
 
@@ -440,8 +426,7 @@ a:focus-visible {
 .post .post-content ol ul {
   margin-top: 0.3em;
   margin-bottom: 0.3em;
-  padding-left: 1.2em;
-  /* Nested list indentation */
+  padding-left: 1.2em; /* Nested list indentation */
 }
 
 .post figure {
@@ -455,35 +440,27 @@ a:focus-visible {
 /* Code block styles use Hugo's native structure */
 
 .post blockquote {
-  margin: 1.2em 0;
-  /* More breathing room around quotes */
-  padding: 0.8em 1.2em;
-  /* Better padding for readability */
-  padding-left: 1.5em;
-  /* Extra left padding for border */
+  margin: 1.2em 0; /* More breathing room around quotes */
+  padding: 0.8em 1.2em; /* Better padding for readability */
+  padding-left: 1.5em; /* Extra left padding for border */
   color: var(--c-quote-text);
   background-color: var(--c-quote-bg);
   border-left: 4px solid var(--c-quote-border);
-  border-radius: 0 4px 4px 0;
-  /* Rounded right corners for modern look */
-  font-style: normal;
-  /* Keep normal style, color provides emphasis */
+  border-radius: 0 4px 4px 0; /* Rounded right corners for modern look */
+  font-style: normal; /* Keep normal style, color provides emphasis */
   /* Ensure proper spacing for nested content */
 }
 
 .post blockquote p {
-  margin: 0.5em 0;
-  /* Spacing for paragraphs inside blockquote */
+  margin: 0.5em 0; /* Spacing for paragraphs inside blockquote */
 }
 
 .post blockquote p:first-child {
-  margin-top: 0;
-  /* Remove top margin for first paragraph */
+  margin-top: 0; /* Remove top margin for first paragraph */
 }
 
 .post blockquote p:last-child {
-  margin-bottom: 0;
-  /* Remove bottom margin for last paragraph */
+  margin-bottom: 0; /* Remove bottom margin for last paragraph */
 }
 
 .post pre {
@@ -556,8 +533,7 @@ a:focus-visible {
 }
 
 .post .highlight pre {
-  background: var(--c-panel);
-  /* Slightly lighter, more modern background */
+  background: var(--c-panel); /* Slightly lighter, more modern background */
 }
 
 .post .highlight .chroma {
@@ -682,46 +658,39 @@ a:focus-visible {
 }
 
 .post p {
-  line-height: 1.75;
-  /* Consistent relative line height */
+  line-height: 1.75; /* Consistent relative line height */
   /* Optimized paragraph spacing for technical content */
-  margin: 0 0 1.1em 0;
-  /* Top: 0 (handled by previous element), Bottom: 1.1em for breathing room */
+  margin: 0 0 1.1em 0; /* Top: 0 (handled by previous element), Bottom: 1.1em for breathing room */
 }
 
 /* First paragraph after headings should have less top margin */
-.post .post-content h1+p,
-.post .post-content h2+p,
-.post .post-content h3+p,
-.post .post-content h4+p,
-.post .post-content h5+p,
-.post .post-content h6+p {
-  margin-top: 0;
-  /* No extra space after headings */
+.post .post-content h1 + p,
+.post .post-content h2 + p,
+.post .post-content h3 + p,
+.post .post-content h4 + p,
+.post .post-content h5 + p,
+.post .post-content h6 + p {
+  margin-top: 0; /* No extra space after headings */
 }
 
 /* Last paragraph in a section should have consistent bottom margin */
 .post .post-content p:last-child {
-  margin-bottom: 1.1em;
-  /* Consistent with other paragraphs */
+  margin-bottom: 1.1em; /* Consistent with other paragraphs */
 }
 
 /* Paragraphs after lists or code blocks */
-.post .post-content ul+p,
-.post .post-content ol+p,
-.post .post-content pre+p,
-.post .post-content .highlight+p {
-  margin-top: 1.1em;
-  /* Space after lists/code blocks */
+.post .post-content ul + p,
+.post .post-content ol + p,
+.post .post-content pre + p,
+.post .post-content .highlight + p {
+  margin-top: 1.1em; /* Space after lists/code blocks */
 }
 
 .post .toc {
   padding: 1em;
-  padding-bottom: 0.5em;
-  /* Reduced bottom padding for less gap before title */
+  padding-bottom: 0.5em; /* Reduced bottom padding for less gap before title */
   list-style-type: square;
-  margin-bottom: 0.5em;
-  /* Reduced margin for less gap before title */
+  margin-bottom: 0.5em; /* Reduced margin for less gap before title */
 }
 
 .post .toc-child {
@@ -731,8 +700,7 @@ a:focus-visible {
 /* TOC: keep original style, just a tiny readability touch */
 .post .toc li,
 .post .toc-child li {
-  font-size: 1.05em;
-  /* Larger font for TOC */
+  font-size: 1.05em; /* Larger font for TOC */
   line-height: 1.85em;
 }
 
@@ -882,29 +850,23 @@ footer a:focus-visible {
 /* Mobile optimizations for better readability on small screens */
 @media screen and (max-width: 768px) {
   .post .post-content {
-    font-size: 0.95em;
-    /* Slightly smaller font on mobile for better fit */
+    font-size: 0.95em; /* Slightly smaller font on mobile for better fit */
   }
 
   .post .highlight pre.chroma {
-    padding: 0.5em 1em;
-    /* Reduced padding on mobile */
-    font-size: 15px;
-    /* Fixed size to match desktop, consistent across devices */
+    padding: 0.5em 1em; /* Reduced padding on mobile */
+    font-size: 15px; /* Fixed size to match desktop, consistent across devices */
   }
 
   .container {
-    padding: 0 10px;
-    /* Reduced container padding on mobile */
+    padding: 0 10px; /* Reduced container padding on mobile */
   }
 
   .post {
-    padding: 0 10px;
-    /* Reduced post padding on mobile */
+    padding: 0 10px; /* Reduced post padding on mobile */
   }
 
   .page {
-    margin: 0 10px;
-    /* Reduced page margin on mobile */
+    margin: 0 10px; /* Reduced page margin on mobile */
   }
 }
