@@ -2,7 +2,7 @@
 <html lang="{{ .Site.Language.Lang | default "en" }}">
   {{ partial "head.html" . }}
   <body id="top">
-    <div class="container">
+    <div class="container{{ if and .IsPage (eq .Type "posts") }} container-post{{ end }}">
       {{ block "main" . }}{{ end }}
     </div>
     <script src="/js/main.js" defer></script>
