@@ -85,18 +85,18 @@ html[data-theme="dark"] {
   --c-inline-code-bg: #1e1e1e;
   --c-quote-text: #d9d9d9;
   --c-quote-bg: #1e1e1e;
-  --c-quote-border: #fff100;
+  --c-quote-border: #4493f8;
   --c-toggle: #b2b2b2;
-  --c-toggle-hover-bg: rgba(255, 241, 0, 0.12);
-  --c-archive-hover: #fff100;
-  --c-top-hover: #fff100;
+  --c-toggle-hover-bg: rgba(68, 147, 248, 0.12);
+  --c-archive-hover: #4493f8;
+  --c-top-hover: #4493f8;
   --c-footer-text: #b2b2b2;
   --c-code-text: #e5e7eb;
-  --c-selection-bg: rgba(255, 241, 0, 0.22);
+  --c-selection-bg: rgba(68, 147, 248, 0.22);
   --c-selection-text: var(--c-text);
   --c-scrollbar-track: rgba(255, 255, 255, 0.06);
   --c-scrollbar-thumb: rgba(255, 255, 255, 0.22);
-  --c-scrollbar-thumb-hover: rgba(255, 241, 0, 0.35);
+  --c-scrollbar-thumb-hover: rgba(68, 147, 248, 0.35);
 
   /* syntax highlighting (dark) */
   --syn-comment: #9ca3af;

@@ -15,7 +15,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>{{ .Site.Title | html }}</title>
   <link href="{{ .Site.BaseURL }}" />
-  <link href="{{ .Permalink }}" rel="self" />
+  <link href="{{ with .OutputFormats.Get "ATOM" }}{{ .Permalink }}{{ else }}{{ $.Permalink }}{{ end }}" rel="self" />
   <id>{{ .Site.BaseURL }}</id>
   <updated>{{ $updated.Format "2006-01-02T15:04:05Z07:00" }}</updated>
   <author>
