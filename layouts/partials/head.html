@@ -51,11 +51,21 @@
   {{- end -}}
 
   {{- with .Site.Params.favicon -}}
-  <link rel="shortcut icon" type="image/x-icon" href="{{ . }}">
+    {{- $href := . -}}
+    {{- $url := urls.Parse . -}}
+    {{- if not (or $url.Scheme $url.Host) -}}
+      {{- $href = strings.TrimPrefix "/" . | relURL -}}
+    {{- end -}}
+  <link rel="shortcut icon" type="image/x-icon" href="{{ $href }}">
   {{- end -}}
 
   {{- with .Site.Params.rss -}}
-  <link rel="alternate" href="{{ . }}" title="{{ $.Site.Title }}" type="application/atom+xml">
+    {{- $href := . -}}
+    {{- $url := urls.Parse . -}}
+    {{- if not (or $url.Scheme $url.Host) -}}
+      {{- $href = strings.TrimPrefix "/" . | relURL -}}
+    {{- end -}}
+  <link rel="alternate" href="{{ $href }}" title="{{ $.Site.Title }}" type="application/atom+xml">
   {{- end -}}
 
   {{- $css := resources.Get "css/style.css" | fingerprint }}

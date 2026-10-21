@@ -13,13 +13,13 @@
 {{- end -}}
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>{{ .Site.Title }}</title>
+  <title>{{ .Site.Title | html }}</title>
   <link href="{{ .Site.BaseURL }}" />
   <link href="{{ .Permalink }}" rel="self" />
   <id>{{ .Site.BaseURL }}</id>
   <updated>{{ $updated.Format "2006-01-02T15:04:05Z07:00" }}</updated>
   <author>
-    <name>{{ .Site.Params.author | default .Site.Title }}</name>
+    <name>{{ .Site.Params.author | default .Site.Title | html }}</name>
   </author>
 
   {{- range $pages -}}
