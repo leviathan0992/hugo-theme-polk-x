@@ -39,8 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!button) return;
     const current = document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
     const isDark = current === 'dark';
-    /* Dark mode shows sun (click to switch to light), light mode shows moon (click to switch to dark) */
-    button.textContent = isDark ? '☀️' : '🌙';
+    /* Icon visibility is handled in CSS via html[data-theme] */
     button.setAttribute('aria-pressed', isDark ? 'true' : 'false');
     button.setAttribute('aria-label', `Theme: ${current} (click to switch)`);
   };
@@ -81,6 +80,57 @@ document.addEventListener('DOMContentLoaded', () => {
       img.setAttribute('loading', 'lazy');
     }
     img.setAttribute('decoding', 'async');
+  });
+
+  const copyText = (text) => {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text).catch(() => legacyCopy(text));
+    }
+    return legacyCopy(text);
+  };
+
+  const legacyCopy = (text) =>
+    new Promise((resolve, reject) => {
+      const area = document.createElement('textarea');
+      area.value = text;
+      area.setAttribute('readonly', '');
+      area.style.position = 'fixed';
+      area.style.opacity = '0';
+      document.body.appendChild(area);
+      area.select();
+      const ok = document.execCommand('copy');
+      document.body.removeChild(area);
+      ok ? resolve() : reject(new Error('copy failed'));
+    });
+
+  /* Plain <pre> blocks need a positioned wrapper so the button doesn't scroll with the code */
+  document.querySelectorAll('.post .post-content pre:not(.chroma)').forEach((pre) => {
+    if (pre.closest('.highlight')) return;
+    const wrap = document.createElement('div');
+    wrap.className = 'code-wrap';
+    pre.parentNode.insertBefore(wrap, pre);
+    wrap.appendChild(pre);
+  });
+
+  document.querySelectorAll('.post .highlight, .post .code-wrap').forEach((block) => {
+    const code = block.querySelector('pre code') || block.querySelector('pre');
+    if (!code) return;
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'code-copy';
+    button.textContent = '复制';
+    button.setAttribute('aria-label', '复制代码');
+    let timer = null;
+    button.addEventListener('click', () => {
+      copyText(code.innerText.replace(/\n$/, ''))
+        .then(() => { button.textContent = '已复制'; })
+        .catch(() => { button.textContent = '复制失败'; })
+        .finally(() => {
+          clearTimeout(timer);
+          timer = setTimeout(() => { button.textContent = '复制'; }, 1500);
+        });
+    });
+    block.appendChild(button);
   });
 
   document.querySelectorAll('a[target="_blank"]').forEach((link) => {

@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="{{ .Site.Language.Lang | default "en" }}">
+<html lang="{{ .Site.LanguageCode | default .Site.Language.Lang | default "en" }}">
   {{ partial "head.html" . }}
   <body id="top">
-    <div class="container{{ if and .IsPage (eq .Type "posts") }} container-post{{ end }}">
+    <div class="container">
       {{ block "main" . }}{{ end }}
     </div>
-    <script src="/js/main.js" defer></script>
+    {{- $js := resources.Get "js/main.js" | fingerprint }}
+    <script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
   </body>
 </html>

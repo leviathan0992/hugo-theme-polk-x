@@ -58,5 +58,6 @@
   <link rel="alternate" href="{{ . }}" title="{{ $.Site.Title }}" type="application/atom+xml">
   {{- end -}}
 
-  <link rel="stylesheet" href="/css/style.css?v={{ now.Unix }}">
+  {{- $css := resources.Get "css/style.css" | fingerprint }}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
 </head>

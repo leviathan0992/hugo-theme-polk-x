@@ -31,7 +31,7 @@ html[data-theme="dark"] {
   --c-hr: #ccc;
   --c-panel: #f6f8fa;
   --c-pre-bg: #f7f7f7;
-  --c-inline-code-bg: #f6f8fa;
+  --c-inline-code-bg: #eceef1;
   --c-quote-text: #60646c;
   --c-quote-bg: #f6f8fa;
   --c-quote-border: #0969da;
@@ -48,7 +48,7 @@ html[data-theme="dark"] {
   --c-scrollbar-thumb-hover: rgba(0, 0, 0, 0.32);
 
   /* syntax highlighting (light) */
-  --syn-comment: #2f6f8f;
+  --syn-comment: #6e7781;
   --syn-keyword: #cf222e;
   --syn-string: #0a3069;
   --syn-number: #0550ae;
@@ -84,7 +84,7 @@ html[data-theme="dark"] {
   --c-pre-bg: #1e1e1e;
   --c-inline-code-bg: #1e1e1e;
   --c-quote-text: #d9d9d9;
-  --c-quote-bg: #111111;
+  --c-quote-bg: #1e1e1e;
   --c-quote-border: #fff100;
   --c-toggle: #b2b2b2;
   --c-toggle-hover-bg: rgba(255, 241, 0, 0.12);
@@ -173,7 +173,7 @@ body,
 }
 
 .container {
-  max-width: 850px;
+  max-width: 1100px;
   margin: 0 auto;
 }
 
@@ -250,23 +250,57 @@ a:focus-visible {
   -webkit-appearance: none;
   background: transparent;
   border: 1px solid transparent;
-  padding: 6px;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   color: var(--c-toggle);
-  line-height: 1;
-  font-size: 16px;
-  opacity: 0.75;
   border-radius: 999px;
   position: absolute;
-  top: 0.95em;
-  right: 20px;
-  transition: color 0.2s ease, opacity 0.2s ease, background 0.2s ease;
+  top: 0.6em;
+  right: 12px;
+  transition: color 0.2s ease, background 0.2s ease;
 }
 
 .theme-toggle:hover {
   color: var(--c-link);
-  opacity: 1;
   background: var(--c-toggle-hover-bg);
+}
+
+.theme-toggle .theme-icon {
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+/* Light mode shows moon (switch to dark), dark mode shows sun (switch to light) */
+.theme-toggle .theme-icon-sun,
+html[data-theme="dark"] .theme-toggle .theme-icon-moon {
+  display: none;
+}
+
+html[data-theme="dark"] .theme-toggle .theme-icon-sun {
+  display: block;
+}
+
+.theme-toggle:hover .theme-icon-sun {
+  transform: rotate(45deg);
+}
+
+.theme-toggle:hover .theme-icon-moon {
+  transform: rotate(-15deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle .theme-icon {
+    transition: none;
+  }
+
+  .theme-toggle:hover .theme-icon {
+    transform: none;
+  }
 }
 
 .theme-toggle:focus-visible {
@@ -274,30 +308,56 @@ a:focus-visible {
   outline-offset: 4px;
 }
 
+.article-title {
+  text-wrap: balance;
+}
+
 /* post */
 .post {
   padding: 0 20px;
-  max-width: 1040px;
   margin: 0 auto 1.5em;
-}
-
-.container.container-post {
-  max-width: 1100px;
 }
 
 .post img {
   max-width: 100%;
 }
 
+/* Tone down bright (mostly white-background) images on dark pages */
+html[data-theme="dark"] .post img {
+  filter: brightness(0.85);
+  border-radius: 4px;
+  transition: filter 0.2s ease;
+}
+
+html[data-theme="dark"] .post img:hover {
+  filter: none;
+}
+
 .post table {
   border-collapse: collapse;
   border-spacing: 0;
+  /* Scroll wide tables instead of breaking words mid-way */
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
 }
 
 .post table td,
 .post table th {
   padding: 6px 13px;
   border: 1px solid var(--c-border-soft);
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+.post table td code,
+.post table th code {
+  white-space: nowrap;
+}
+
+.post table th {
+  background: var(--c-panel);
+  font-weight: 600;
 }
 
 .post hr {
@@ -327,7 +387,7 @@ a:focus-visible {
 }
 
 .post .post-content h2 {
-  font-size: 1.875rem;
+  font-size: 26px;
   font-weight: 600;
   margin: 1.5em 0 0.6em 0;
   line-height: 1.4;
@@ -347,7 +407,7 @@ a:focus-visible {
 }
 
 .post .post-content h3 {
-  font-size: 1.5rem;
+  font-size: 21px;
   font-weight: 600;
   margin: 0.9em 0 0.4em 0; /* Tighter spacing for subsections */
   line-height: 1.4;
@@ -485,7 +545,7 @@ a:focus-visible {
 /* Fenced code blocks (Hugo native format): keep closer to original visual size. */
 .post .highlight pre,
 .post .highlight code {
-  font-size: 16px;
+  font-size: 15px;
 }
 
 /* Code block readability tweaks (subtle, keep original look) */
@@ -507,7 +567,24 @@ a:focus-visible {
   font-feature-settings: "liga" 0, "calt" 0;
   -moz-tab-size: 4;
   tab-size: 4;
-  font-size: 16px;
+  font-size: 15px;
+}
+
+/* Plain <pre> blocks (indented code, ASCII diagrams) match fenced blocks */
+.post .post-content pre:not(.chroma) {
+  font-family: "JetBrains Mono", "SF Mono", "Monaco", "Menlo", "Consolas", monospace;
+  padding: 1em 1.2em;
+  line-height: 1.6;
+  font-size: 15px;
+  overflow-x: auto;
+  border-radius: 8px;
+  border: 1px solid var(--c-border-soft);
+  background: var(--c-panel);
+}
+
+.post .code-wrap {
+  position: relative;
+  margin: 1em 0;
 }
 
 /* Subtle line hover to aid scanning large blocks */
@@ -535,6 +612,48 @@ a:focus-visible {
 .post .highlight {
   background: transparent;
   border-radius: 0;
+  position: relative;
+}
+
+/* Copy button, shown on hover (always visible on touch screens) */
+.post .highlight .code-copy,
+.post .code-wrap .code-copy {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 2px 8px;
+  font-size: 12px;
+  line-height: 1.6;
+  font-family: inherit;
+  color: var(--c-muted);
+  background: var(--c-bg);
+  border: 1px solid var(--c-border-soft);
+  border-radius: 4px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
+
+.post .highlight:hover .code-copy,
+.post .code-wrap:hover .code-copy,
+.post .code-copy:focus-visible {
+  opacity: 1;
+}
+
+.post .code-copy:hover {
+  color: var(--c-link);
+}
+
+.post .code-copy:focus-visible {
+  outline: 2px solid var(--c-focus);
+  outline-offset: 2px;
+}
+
+@media (hover: none) {
+  .post .highlight .code-copy,
+  .post .code-wrap .code-copy {
+    opacity: 1;
+  }
 }
 
 .post .highlight pre {
@@ -702,10 +821,10 @@ a:focus-visible {
   list-style: square;
 }
 
-/* TOC: keep original style, just a tiny readability touch */
+/* TOC: one step smaller than body text so it stays secondary */
 .post .toc li,
 .post .toc-child li {
-  font-size: 1.05em; /* Larger font for TOC */
+  font-size: 16px;
   line-height: 1.85em;
 }
 
@@ -773,29 +892,39 @@ a:focus-visible {
   line-height: 1.5;
 }
 
+.archive .post-archive .post-item {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6em;
+}
+
+/* Fixed-width date column so titles line up (digits differ in width) */
 .archive .post-archive .post-item .post-date {
-  font-size: 80%;
+  flex: none;
+  width: 6.4em;
+  white-space: nowrap;
+  font-size: 85%;
   color: var(--c-muted-2);
-  font-family: Hiragino Sans GB, Microsoft YaHei, WenQuanYi, Airal, sans-serif;
+  font-variant-numeric: tabular-nums;
 }
 
 @media screen and (max-width: 425px) {
   .archive .post-archive .post-item .post-date {
     float: none;
-    margin-left: 0.5em;
     font-size: 90%;
     color: var(--c-muted);
   }
 }
 
 .archive .post-archive .post-item .post-title {
-  /* border-bottom: 1px dotted; */
   text-decoration: none;
-  transition: border-bottom-color 0.2s ease;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
 }
 
+/* Underline instead of border so hovering never shifts the layout */
 .archive .post-archive .post-item .post-title:hover {
-  border-bottom: 1px solid;
+  text-decoration: underline;
 }
 
 .archive .post-archive .post-item .post-title:focus-visible {
@@ -855,12 +984,22 @@ footer a:focus-visible {
 /* Mobile optimizations for better readability on small screens */
 @media screen and (max-width: 768px) {
   .post .post-content {
-    font-size: 0.95em; /* Slightly smaller font on mobile for better fit */
+    font-size: 16px; /* Keep body text comfortable on small screens */
   }
 
   .post .highlight pre.chroma {
     padding: 0.5em 1em; /* Reduced padding on mobile */
-    font-size: 15px; /* Fixed size to match desktop, consistent across devices */
+  }
+
+  /* Keep code slightly smaller than body text so it stays secondary */
+  .post .highlight pre.chroma,
+  .post .highlight pre.chroma code,
+  .post .post-content pre:not(.chroma) {
+    font-size: 14px;
+  }
+
+  .post .post-content pre:not(.chroma) {
+    padding: 0.5em 1em;
   }
 
   .container {
@@ -873,5 +1012,40 @@ footer a:focus-visible {
 
   .page {
     margin: 0 10px; /* Reduced page margin on mobile */
+  }
+
+  /* Match header and archive insets to posts/pages so everything lines up */
+  .header,
+  .archive,
+  .page-nav {
+    padding: 0 10px;
+  }
+
+  footer {
+    margin: 0.5em 10px 0 10px;
+  }
+
+  /* Wide tables scroll; keep prose columns readable instead of one word per line */
+  .post table td,
+  .post table th {
+    min-width: 10em;
+  }
+
+  .article-title {
+    font-size: 24px;
+    line-height: 1.35;
+  }
+
+  /* Keep section headings below the article title on small screens */
+  .post .post-content h2 {
+    font-size: 21px;
+  }
+
+  .post .post-content h3 {
+    font-size: 18px;
+  }
+
+  .post .post-content h4 {
+    font-size: 17px;
   }
 }
