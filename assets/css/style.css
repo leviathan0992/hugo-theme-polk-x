@@ -310,6 +310,7 @@ html[data-theme="dark"] .theme-toggle .theme-icon-sun {
 
 .article-title {
   text-wrap: balance;
+  margin-top: 44px; /* breathing room below the nav */
 }
 
 /* post */
@@ -831,6 +832,7 @@ html[data-theme="dark"] .post img:hover {
 .post .post-footer {
   line-height: 1;
   min-height: 1em;
+  margin-top: 48px; /* clear end-of-article break */
 }
 
 .post .post-footer .top {
@@ -878,7 +880,7 @@ html[data-theme="dark"] .post img:hover {
 
 /* archive */
 .archive {
-  padding: 0 20px;
+  padding: 8px 20px 0;
   margin-bottom: 1em;
 }
 
@@ -1016,9 +1018,12 @@ footer a:focus-visible {
 
   /* Match header and archive insets to posts/pages so everything lines up */
   .header,
-  .archive,
   .page-nav {
     padding: 0 10px;
+  }
+
+  .archive {
+    padding: 8px 10px 0;
   }
 
   footer {
@@ -1034,6 +1039,7 @@ footer a:focus-visible {
   .article-title {
     font-size: 24px;
     line-height: 1.35;
+    margin-top: 32px;
   }
 
   /* Keep section headings below the article title on small screens */
